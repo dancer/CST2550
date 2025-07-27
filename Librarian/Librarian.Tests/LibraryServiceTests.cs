@@ -15,7 +15,7 @@ namespace Librarian.Tests
             var options = new DbContextOptionsBuilder<LibraryContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
-            
+
             var context = new LibraryContext(options);
             _service = new LibraryService(context);
         }
@@ -24,10 +24,10 @@ namespace Librarian.Tests
         public void AddResource_ValidResource_ShouldReturnTrue()
         {
             bool result = _service.AddResource(
-                "Test Book", 
-                "Test Author", 
-                2023, 
-                "Fiction", 
+                "Test Book",
+                "Test Author",
+                2023,
+                "Fiction",
                 ResourceType.Book
             );
 
@@ -83,7 +83,7 @@ namespace Librarian.Tests
             _service.AddResource("Return Test Book", "Author", 2023, "Genre", ResourceType.Book);
             var resources = _service.GetAllResourcesSorted();
             int resourceId = resources.First().Id;
-            
+
             _service.BorrowResource(resourceId, "Borrower");
             bool result = _service.ReturnResource(resourceId);
 
@@ -101,11 +101,23 @@ namespace Librarian.Tests
             Assert.True(results.Count >= 2);
         }
 
-        [Fact] 
+        [Fact]
         public void SearchByGenre_ExistingGenre_ShouldReturnResources()
         {
-            _service.AddResource("Sci-Fi Book 1", "Author 1", 2022, "Science Fiction", ResourceType.Book);
-            _service.AddResource("Sci-Fi Book 2", "Author 2", 2023, "Science Fiction", ResourceType.Book);
+            _service.AddResource(
+                "Sci-Fi Book 1",
+                "Author 1",
+                2022,
+                "Science Fiction",
+                ResourceType.Book
+            );
+            _service.AddResource(
+                "Sci-Fi Book 2",
+                "Author 2",
+                2023,
+                "Science Fiction",
+                ResourceType.Book
+            );
 
             var results = _service.SearchByGenre("Science Fiction");
 
@@ -116,15 +128,21 @@ namespace Librarian.Tests
         [Fact]
         public void UpdateResource_ExistingResource_ShouldReturnTrue()
         {
-            _service.AddResource("Original Title", "Original Author", 2020, "Original Genre", ResourceType.Book);
+            _service.AddResource(
+                "Original Title",
+                "Original Author",
+                2020,
+                "Original Genre",
+                ResourceType.Book
+            );
             var resources = _service.GetAllResourcesSorted();
             int resourceId = resources.First().Id;
 
             bool result = _service.UpdateResource(
-                resourceId, 
-                "Updated Title", 
-                "Updated Author", 
-                2023, 
+                resourceId,
+                "Updated Title",
+                "Updated Author",
+                2023,
                 "Updated Genre"
             );
 

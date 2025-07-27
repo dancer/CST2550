@@ -412,13 +412,15 @@ namespace Librarian.Services
                     }
 
                     Console.Write($" [{resource.Id:D3}] ");
-                    
+
                     // add colored type indicator
                     Console.ForegroundColor = SUBTLE;
                     Console.Write($"[{resource.Type}] ");
                     Console.ForegroundColor = i == selectedIndex ? BRIGHT : TEXT;
-                    
-                    Console.Write($"{resource.Title} - {resource.Author} ({resource.PublicationYear})");
+
+                    Console.Write(
+                        $"{resource.Title} - {resource.Author} ({resource.PublicationYear})"
+                    );
 
                     if (resource.HasReadableContent())
                     {
@@ -643,7 +645,14 @@ namespace Librarian.Services
 
         private void ViewReports()
         {
-            var options = new[] { "overdue items", "borrowed items", "library stats", "borrowing history", "back" };
+            var options = new[]
+            {
+                "overdue items",
+                "borrowed items",
+                "library stats",
+                "borrowing history",
+                "back",
+            };
 
             while (true)
             {
@@ -819,12 +828,12 @@ namespace Librarian.Services
             // automatically add @bunnyrabb.it for known users
             var knownUsers = new[] { "josh", "ashu", "rigon", "alex" };
             string cleanName = name.ToLower().Trim();
-            
+
             if (knownUsers.Contains(cleanName))
             {
                 return $"{cleanName}@bunnyrabb.it";
             }
-            
+
             return $"{cleanName}@bunnyrabb.it"; // default to @bunnyrabb.it for all users
         }
 
@@ -876,12 +885,12 @@ namespace Librarian.Services
                 Console.Write("borrowed: ");
                 Console.ForegroundColor = TEXT;
                 Console.Write($"{record.BorrowDate:dd/MM/yyyy}");
-                
+
                 Console.ForegroundColor = SUBTLE;
                 Console.Write(" • due: ");
                 Console.ForegroundColor = TEXT;
                 Console.Write($"{record.DueDate:dd/MM/yyyy}");
-                
+
                 if (record.IsReturned && record.ReturnDate.HasValue)
                 {
                     Console.ForegroundColor = SUBTLE;
@@ -952,7 +961,7 @@ namespace Librarian.Services
                 Console.Write($"{member.TotalBorrowed}");
                 Console.ForegroundColor = SUBTLE;
                 Console.Write(" total borrowed");
-                
+
                 if (member.CurrentlyBorrowed > 0)
                 {
                     Console.Write(" • ");
@@ -1003,17 +1012,23 @@ namespace Librarian.Services
         private void ShowResourceIdReference(bool readableContentOnly = false)
         {
             var allResources = _libraryService.GetAllResourcesSorted();
-            
-            var books = readableContentOnly 
-                ? allResources.Where(r => r.Type == ResourceType.Book && r.HasReadableContent()).ToList()
+
+            var books = readableContentOnly
+                ? allResources
+                    .Where(r => r.Type == ResourceType.Book && r.HasReadableContent())
+                    .ToList()
                 : allResources.Where(r => r.Type == ResourceType.Book).ToList();
-                
-            var journals = readableContentOnly 
-                ? allResources.Where(r => r.Type == ResourceType.Journal && r.HasReadableContent()).ToList()
+
+            var journals = readableContentOnly
+                ? allResources
+                    .Where(r => r.Type == ResourceType.Journal && r.HasReadableContent())
+                    .ToList()
                 : allResources.Where(r => r.Type == ResourceType.Journal).ToList();
-                
-            var media = readableContentOnly 
-                ? allResources.Where(r => r.Type == ResourceType.Media && r.HasReadableContent()).ToList()
+
+            var media = readableContentOnly
+                ? allResources
+                    .Where(r => r.Type == ResourceType.Media && r.HasReadableContent())
+                    .ToList()
                 : allResources.Where(r => r.Type == ResourceType.Media).ToList();
 
             WriteSubtle(readableContentOnly ? "  available content:" : "  resource ids:");
@@ -1184,7 +1199,10 @@ namespace Librarian.Services
             // centered title section
             CenterWrite(resource.Title.ToUpper(), ACCENT);
             CenterWrite($"by {resource.Author}", SUBTLE);
-            CenterWrite($"[{resource.Type}] • {resource.Genre} • {resource.PublicationYear}", SUBTLE);
+            CenterWrite(
+                $"[{resource.Type}] • {resource.Genre} • {resource.PublicationYear}",
+                SUBTLE
+            );
             CenterWrite(
                 $"page {session.CurrentPage}/{session.TotalPages} • {session.GetProgressPercentage():F1}% complete",
                 SUBTLE

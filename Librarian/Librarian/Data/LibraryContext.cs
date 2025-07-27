@@ -529,7 +529,7 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 15),
                         DueDate = new DateTime(2025, 7, 29),
                         ReturnDate = new DateTime(2025, 7, 28),
-                        IsReturned = true
+                        IsReturned = true,
                     },
                     new BorrowRecord
                     {
@@ -539,7 +539,7 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 20),
                         DueDate = new DateTime(2025, 8, 3),
                         ReturnDate = new DateTime(2025, 8, 1),
-                        IsReturned = true
+                        IsReturned = true,
                     },
                     new BorrowRecord
                     {
@@ -549,9 +549,8 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 25),
                         DueDate = new DateTime(2025, 8, 8),
                         ReturnDate = null,
-                        IsReturned = false // currently borrowed
+                        IsReturned = false, // currently borrowed
                     },
-
                     // ashu's borrowing history - includes one overdue
                     new BorrowRecord
                     {
@@ -561,7 +560,7 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 10),
                         DueDate = new DateTime(2025, 7, 24),
                         ReturnDate = new DateTime(2025, 7, 23),
-                        IsReturned = true
+                        IsReturned = true,
                     },
                     new BorrowRecord
                     {
@@ -571,7 +570,7 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 18),
                         DueDate = new DateTime(2025, 8, 1),
                         ReturnDate = null,
-                        IsReturned = false // currently borrowed
+                        IsReturned = false, // currently borrowed
                     },
                     new BorrowRecord
                     {
@@ -581,7 +580,7 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 12),
                         DueDate = new DateTime(2025, 7, 26), // overdue
                         ReturnDate = null,
-                        IsReturned = false // overdue item
+                        IsReturned = false, // overdue item
                     },
                     new BorrowRecord
                     {
@@ -591,7 +590,7 @@ namespace Librarian.Data
                         BorrowDate = new DateTime(2025, 7, 22),
                         DueDate = new DateTime(2025, 8, 5),
                         ReturnDate = new DateTime(2025, 8, 4),
-                        IsReturned = true
+                        IsReturned = true,
                     }
                 );
         }

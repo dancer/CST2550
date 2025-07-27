@@ -381,7 +381,7 @@ namespace Librarian.Services
             try
             {
                 var borrowRecords = _context.BorrowRecords.Include(br => br.Resource).ToList();
-                
+
                 var memberStats = borrowRecords
                     .GroupBy(br => br.BorrowerName)
                     .Select(group => new MemberStats
@@ -392,7 +392,7 @@ namespace Librarian.Services
                         CurrentlyBorrowed = group.Count(br => !br.IsReturned && !br.IsOverdue()),
                         Returned = group.Count(br => br.IsReturned),
                         Overdue = group.Count(br => br.IsOverdue()),
-                        LastBorrowDate = group.Max(br => br.BorrowDate)
+                        LastBorrowDate = group.Max(br => br.BorrowDate),
                     })
                     .OrderByDescending(ms => ms.LastBorrowDate)
                     .ToList();
@@ -411,12 +411,12 @@ namespace Librarian.Services
             // automatically add @bunnyrabb.it for known users
             var knownUsers = new[] { "josh", "ashu", "rigon", "alex" };
             string cleanName = name.ToLower().Trim();
-            
+
             if (knownUsers.Contains(cleanName))
             {
                 return $"{cleanName}@bunnyrabb.it";
             }
-            
+
             return $"{cleanName}@bunnyrabb.it"; // default to @bunnyrabb.it for all users
         }
 
