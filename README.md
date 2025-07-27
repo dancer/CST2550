@@ -182,6 +182,6 @@ Librarian/
 
 ## About
 
-Built for CST2550 Reset Coursework - July 2025
+Built for CST2550 Coursework
 
 This is an academic project for educational purposes only.
