@@ -1,5 +1,6 @@
 # Library Management System
 
+M01031195
 Console-based Library Management System for CST2550 coursework. Built with C# .NET 8.0 and SQL Server LocalDB.
 
 ## Features
@@ -182,6 +183,6 @@ Librarian/
 
 ## About
 
-Built for CST2550 Reset Coursework - July 2025
+Built for CST2550 Coursework
 
 This is an academic project for educational purposes only.
